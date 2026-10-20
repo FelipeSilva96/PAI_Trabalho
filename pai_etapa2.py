@@ -150,27 +150,40 @@ def arquivos_necessarios(linha):
 # Auditoria de arquivos e dimensões
 # -----------------------------------------------------------
 
-def encontrar_eixo_z(shape, n_z=None, n_xy=256):
-    # Primeiro verificamos se o volume tem três dimensões.
+
+def encontrar_eixo_z(shape, n_z=None, n_xy=None):
+    # Conferimos se estamos trabalhando com um volume 3D.
     if len(shape) != 3:
         raise ValueError(
-            f"O volume precisa ser 3D. Shape encontrado: {shape}"
+            f"Esperado um volume 3D, recebido: {shape}"
         )
 
-    # Procuramos os dois eixos do plano XY.
-    eixos_xy = [
-        eixo for eixo, tamanho in enumerate(shape)
-        if tamanho == n_xy
-    ]
+    candidatos = []
 
-    if len(eixos_xy) == 2:
-        # O eixo restante corresponde à profundidade.
-        eixo_z = next(
-            eixo for eixo in range(3)
-            if eixo not in eixos_xy
+    for eixo in range(3):
+        # As duas dimensões restantes representam o plano XY.
+        outros_eixos = [
+            i for i in range(3) if i != eixo
+        ]
+
+        altura = shape[outros_eixos[0]]
+        largura = shape[outros_eixos[1]]
+        profundidade = shape[eixo]
+
+        # No MinCrop, os cortes são quadrados e a
+        # profundidade é menor que as dimensões do plano.
+        if altura == largura and profundidade < altura:
+            candidatos.append(eixo)
+
+    if len(candidatos) != 1:
+        raise ValueError(
+            f"Não foi possível identificar o eixo Z. "
+            f"Shape: {shape}, "
+            f"n_z original: {n_z}, "
+            f"n_xy original: {n_xy}"
         )
 
-        return eixo_z
+    return candidatos[0]
 
     # Caso não seja possível identificar pelos eixos XY,
     # tentamos usar a quantidade de cortes do CSV.
