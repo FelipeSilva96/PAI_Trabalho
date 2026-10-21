@@ -14,14 +14,25 @@ from sklearn.metrics import (
 
 PASTA = Path("resultados/metricas")
 
+
 ARQUIVOS = {
     "CNN7 - Uma fase": (
         "avaliacao_val_cnn7_early_central_nenhuma.csv"
     ),
+
     "CNN7 - Tres fases": (
         "avaliacao_val_cnn7_three_central_nenhuma.csv"
+    ),
+
+    "CNN7 - Uma fase - Maior tumor": (
+        "avaliacao_val_cnn7_early_maior_tumor_nenhuma.csv"
+    ),
+
+    "CNN7 - Tres fases - Maior tumor": (
+        "avaliacao_val_cnn7_three_maior_tumor_nenhuma.csv"
     )
 }
+
 
 previsoes = {}
 

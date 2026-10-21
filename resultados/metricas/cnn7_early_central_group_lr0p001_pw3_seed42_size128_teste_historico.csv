@@ -1,0 +1,2 @@
+epoca,loss_treino,loss_validacao,acuracia,acuracia_balanceada,sensibilidade,especificidade,precisao,f1,auc_roc,average_precision,brier,VP,VN,FP,FN
+1,1.0580516409415466,1.1328666860407048,0.3333333333333333,0.5,1.0,0.0,0.3333333333333333,0.5,0.5578512396694215,0.4605204821795442,0.264179974411109,11,0,22,0

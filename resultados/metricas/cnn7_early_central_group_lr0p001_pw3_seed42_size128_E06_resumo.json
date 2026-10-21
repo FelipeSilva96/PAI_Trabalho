@@ -1,0 +1,34 @@
+{
+  "experimento": "cnn7_early_central_group_lr0p001_pw3_seed42_size128_E06",
+  "melhor_epoca": 1,
+  "loss_validacao": 1.1328666860407048,
+  "tempo_segundos": 99.7221308000153,
+  "configuracao": {
+    "modo": "early",
+    "selecao": "central",
+    "norm": "group",
+    "lr": 0.001,
+    "pos_weight": 3.0,
+    "seed": 42,
+    "epocas": 30,
+    "paciencia": 8,
+    "batch": 8,
+    "tamanho": 128,
+    "tag": "E06"
+  },
+  "metricas": {
+    "acuracia": 0.3333333333333333,
+    "acuracia_balanceada": 0.5,
+    "sensibilidade": 1.0,
+    "especificidade": 0.0,
+    "precisao": 0.3333333333333333,
+    "f1": 0.5,
+    "auc_roc": 0.5578512396694215,
+    "average_precision": 0.4605204821795442,
+    "brier": 0.264179974411109,
+    "VP": 11,
+    "VN": 0,
+    "FP": 22,
+    "FN": 0
+  }
+}
