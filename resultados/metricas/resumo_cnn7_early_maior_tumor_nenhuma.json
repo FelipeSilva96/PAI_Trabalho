@@ -1,0 +1,15 @@
+{
+  "modelo": "cnn7_early_maior_tumor_nenhuma",
+  "tempo_segundos": 110.10047399997711,
+  "pacientes_treino": 104,
+  "pacientes_validacao": 33,
+  "peso_classe_positiva": 3.0,
+  "melhor_loss_validacao": 1.4014201525485876,
+  "hiperparametros": {
+    "epocas_maximas": 30,
+    "batch": 8,
+    "lr": 0.001,
+    "tamanho": 128,
+    "paciencia": 8
+  }
+}

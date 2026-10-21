@@ -1152,7 +1152,18 @@ def avaliar_checkpoint(args):
         num_workers=0
     )
 
-    criterio = nn.BCEWithLogitsLoss()
+    # Utilizamos a mesma ponderação empregada no treinamento.
+    tabela_treino = ler_metadados()
+    tabela_treino = tabela_treino[tabela_treino["test"] == 0]
+
+    positivos = int((tabela_treino["pCR"] == 1).sum())
+    negativos = int((tabela_treino["pCR"] == 0).sum())
+
+    peso_positivo = negativos / positivos
+
+    criterio = nn.BCEWithLogitsLoss(
+    pos_weight=torch.tensor([peso_positivo], dtype=torch.float32)
+    )
 
     perda, metricas, previsoes = validar(
         modelo, loader, criterio,

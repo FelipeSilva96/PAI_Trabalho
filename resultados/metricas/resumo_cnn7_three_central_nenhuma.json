@@ -1,0 +1,15 @@
+{
+  "modelo": "cnn7_three_central_nenhuma",
+  "tempo_segundos": 151.10613199998625,
+  "pacientes_treino": 104,
+  "pacientes_validacao": 33,
+  "peso_classe_positiva": 3.0,
+  "melhor_loss_validacao": 1.1697942560369319,
+  "hiperparametros": {
+    "epocas_maximas": 30,
+    "batch": 8,
+    "lr": 0.001,
+    "tamanho": 128,
+    "paciencia": 8
+  }
+}
