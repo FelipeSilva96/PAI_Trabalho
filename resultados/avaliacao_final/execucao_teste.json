@@ -1,0 +1,12 @@
+{
+  "avaliacao_realizada": true,
+  "particao": 1,
+  "pacientes": 35,
+  "protocolo_sha256": "f57143c3b50aec5e075ff2f646f19c0f5f69dea6c49cd39fe654b287321bda5e",
+  "limiar": 0.5,
+  "modelos": [
+    "cnn7_E08",
+    "resnet50_R01",
+    "fusao_FUS02"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "versao": "PAI_TESTE_FINAL_V1",
+  "limiar": 0.5,
+  "metricas": [
+    {
+      "modelo": "cnn7_E08",
+      "pacientes": 35,
+      "VP": 0,
+      "VN": 23,
+      "FP": 0,
+      "FN": 12,
+      "acuracia": 0.6571428571428571,
+      "acuracia_balanceada": 0.5,
+      "sensibilidade": 0.0,
+      "especificidade": 1.0,
+      "precisao": 0.0,
+      "f1": 0.0,
+      "auc_roc": 0.40217391304347827,
+      "average_precision": 0.2995014152579019,
+      "brier": 0.24945568206398744
+    },
+    {
+      "modelo": "resnet50_R01",
+      "pacientes": 35,
+      "VP": 0,
+      "VN": 23,
+      "FP": 0,
+      "FN": 12,
+      "acuracia": 0.6571428571428571,
+      "acuracia_balanceada": 0.5,
+      "sensibilidade": 0.0,
+      "especificidade": 1.0,
+      "precisao": 0.0,
+      "f1": 0.0,
+      "auc_roc": 0.5,
+      "average_precision": 0.35317203016839327,
+      "brier": 0.23566711407205843
+    },
+    {
+      "modelo": "fusao_FUS02",
+      "pacientes": 35,
+      "VP": 12,
+      "VN": 5,
+      "FP": 18,
+      "FN": 0,
+      "acuracia": 0.4857142857142857,
+      "acuracia_balanceada": 0.6086956521739131,
+      "sensibilidade": 1.0,
+      "especificidade": 0.21739130434782608,
+      "precisao": 0.4,
+      "f1": 0.5714285714285714,
+      "auc_roc": 0.4818840579710145,
+      "average_precision": 0.34557343860629713,
+      "brier": 0.2750884189245302
+    }
+  ]
+}

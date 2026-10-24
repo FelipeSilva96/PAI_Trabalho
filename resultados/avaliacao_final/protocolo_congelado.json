@@ -1,0 +1,62 @@
+{
+  "versao": "PAI_FINAL_V1",
+  "criterio_selecao": "AUC-ROC de validacao",
+  "limiar_classificacao": 0.5,
+  "pacientes_treino": 104,
+  "pacientes_validacao": 33,
+  "pacientes_teste": 35,
+  "teste_ja_avaliado": false,
+  "observacao": "O conjunto de teste nao participou da escolha dos checkpoints nem dos hiperparametros.",
+  "csv_metadados_sha256": "c7ea67c07c8ee17a4f82e0259e0e777e9ff2757960a4e2d411cfb6a080b21905",
+  "hashes_codigo": {
+    "pai_etapa2.py": "c5b5475d22b74eead78673143a896460bdd18b7bf4a9db6b9576e65c46fb9a16",
+    "pai_gradcam.py": "997a4efad062c9052120e583f209067d7b92914a089bf4e2ca54fc79ba3b7301",
+    "pai_resnet50.py": "00786af538934ccf5472138aa05fc49babeb3033bfda6384fa06ca4010e64a5a",
+    "pai_fusao_temporal.py": "250aa06fd107cad2c803a5c81b82e2d6d899c08a93d2ecbb6a70fea7bdabc6b1",
+    "pai_verificacao_final.py": "5e1ce64f5449645d8ad903bc3806916df30a6d93cdddcba8be5b8831dfc3ca17"
+  },
+  "modelos": {
+    "cnn7_E08": {
+      "tipo": "cnn7",
+      "checkpoint": "C:\\Users\\Felipe\\Documents\\PAI_Trabalho\\resultados\\modelos\\cnn7_early_central_batch_lr0p001_pw1_seed42_size128_E08.pth",
+      "sha256": "8a695b40e12dc3a41639a75cb429e7dae551c7af2e1bcb029e25afa4ecd9a64a",
+      "modo": "early",
+      "selecao": "central",
+      "tamanho": 128,
+      "metricas_validacao": {
+        "auc_roc": 0.7024793388429752,
+        "f1": 0.0,
+        "acuracia_balanceada": 0.5,
+        "diferenca_maxima": 8.326672684688674e-17
+      }
+    },
+    "resnet50_R01": {
+      "tipo": "resnet50",
+      "checkpoint": "C:\\Users\\Felipe\\Documents\\PAI_Trabalho\\resultados\\modelos\\resnet50_early_central_sz128_lr0p001_pw1_seed42_R01_corrigido.pth",
+      "sha256": "a8b5f353ece9dd5992d1e7a375ff0cdebdecc2411e05cfa8fbf88f5bc23706f3",
+      "modo": "early",
+      "selecao": "central",
+      "tamanho": 128,
+      "metricas_validacao": {
+        "auc_roc": 0.4917355371900826,
+        "f1": 0.0,
+        "acuracia_balanceada": 0.5,
+        "diferenca_maxima": 4.117774965450849e-08
+      }
+    },
+    "fusao_FUS02": {
+      "tipo": "fusao",
+      "checkpoint": "C:\\Users\\Felipe\\Documents\\PAI_Trabalho\\resultados\\modelos\\fusao_temporal_central_sz128_lr0p0003_pw3_seed42_FUS02.pth",
+      "sha256": "92a75fe7c9226e0d6e78f7aa9c3406d412fdfcf050abcdc05541c8af84ac4b94",
+      "modo": "three",
+      "selecao": "central",
+      "tamanho": 128,
+      "metricas_validacao": {
+        "auc_roc": 0.5785123966942148,
+        "f1": 0.4444444444444444,
+        "acuracia_balanceada": 0.4772727272727273,
+        "diferenca_maxima": 5.551115123125783e-17
+      }
+    }
+  }
+}

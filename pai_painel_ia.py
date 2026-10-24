@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 from scipy.ndimage import binary_erosion
 from matplotlib import colormaps
 
-from pai_etapa2 import DatasetMRI
+from pai_etapa2 import DatasetMRI, MODELOS
 from pai_gradcam import (
     CHECKPOINTS,
     carregar_modelo,
@@ -313,7 +313,16 @@ class JanelaIA:
 
     def _trabalhar(self, tipo, pid, alvo):
         try:
-            checkpoint = CHECKPOINTS[tipo]
+
+            # O painel utiliza os checkpoints da avaliação final.
+            # Não modificamos os checkpoints nem o protocolo congelado.
+            if tipo == "cnn7":
+                checkpoint = (
+                    MODELOS /
+                    "cnn7_early_central_batch_lr0p001_pw1_seed42_size128_E08.pth"
+                )
+            else:
+                checkpoint = CHECKPOINTS[tipo]
 
             modelo, camada, modo, selecao, tamanho = (
                 carregar_modelo(
@@ -465,7 +474,7 @@ class JanelaIA:
         f"Previsto: {previsto}   |   "
         f"{acerto}"
         )
-        
+
         for indice, (
             nome, original, gradcam
         ) in enumerate(resultado["paineis"]):
