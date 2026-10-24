@@ -1,0 +1,26 @@
+{
+  "experimento": "resnet50_finetune_early_central_FT02_CORRIGIDO",
+  "versao": "FT_PARCIAL_V2",
+  "estrategia": "fine_tuning_ultimo_bloco",
+  "parametros_treinaveis": 4464641,
+  "melhor_epoca": 0,
+  "loss_validacao": 0.6486487930471246,
+  "metricas": {
+    "auc_roc": 0.4917355371900826,
+    "f1": 0.0,
+    "acuracia_balanceada": 0.5,
+    "VP": 0,
+    "VN": 22,
+    "FP": 0,
+    "FN": 11
+  },
+  "tempo_total_segundos": 215.2498519999208,
+  "parametros": {
+    "epocas": 20,
+    "paciencia": 4,
+    "batch": 2,
+    "seed": 42,
+    "tag": "FT02_CORRIGIDO",
+    "diagnostico": false
+  }
+}

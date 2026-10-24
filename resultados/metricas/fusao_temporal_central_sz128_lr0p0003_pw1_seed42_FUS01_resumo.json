@@ -1,0 +1,38 @@
+{
+  "experimento": "fusao_temporal_central_sz128_lr0p0003_pw1_seed42_FUS01",
+  "versao": "FUSAO_TEMPORAL_V1",
+  "melhor_epoca": 8,
+  "melhor_loss": 0.6364177393190789,
+  "metricas": {
+    "acuracia": 0.6666666666666666,
+    "acuracia_balanceada": 0.5,
+    "sensibilidade": 0.0,
+    "especificidade": 1.0,
+    "precisao": 0.0,
+    "f1": 0.0,
+    "auc_roc": 0.5330578512396693,
+    "average_precision": 0.4333029627112699,
+    "brier": 0.22217171523297502,
+    "probabilidade_media": 0.31614709171381866,
+    "probabilidade_desvio": 0.046504212402335016,
+    "previsoes_positivas": 0,
+    "VP": 0,
+    "VN": 22,
+    "FP": 0,
+    "FN": 11
+  },
+  "tempo_segundos": 322.6381270000711,
+  "configuracao": {
+    "acao": "treino",
+    "selecao": "central",
+    "tamanho": 128,
+    "batch": 8,
+    "lr": 0.0003,
+    "pos_weight": 1.0,
+    "seed": 42,
+    "epocas": 30,
+    "paciencia": 8,
+    "lotes_teste": 5,
+    "tag": "FUS01"
+  }
+}

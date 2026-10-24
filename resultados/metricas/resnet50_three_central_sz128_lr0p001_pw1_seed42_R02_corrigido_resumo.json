@@ -1,0 +1,37 @@
+{
+  "experimento": "resnet50_three_central_sz128_lr0p001_pw1_seed42_R02_corrigido",
+  "arquitetura": "ResNet50",
+  "estrategia": "extrator_congelado",
+  "melhor_epoca": 2,
+  "melhor_loss_validacao": 0.6946614384651184,
+  "tempo_extracao_segundos": 40.8461461000843,
+  "tempo_treinamento_segundos": 0.5804155999794602,
+  "parametros": {
+    "modo": "three",
+    "selecao": "central",
+    "tamanho": 128,
+    "batch_extracao": 4,
+    "batch": 64,
+    "lr": 0.001,
+    "pos_weight": 1.0,
+    "seed": 42,
+    "epocas": 30,
+    "paciencia": 8,
+    "tag": "R02_corrigido"
+  },
+  "metricas": {
+    "acuracia": 0.6666666666666666,
+    "acuracia_balanceada": 0.5,
+    "sensibilidade": 0.0,
+    "especificidade": 1.0,
+    "precisao": 0.0,
+    "f1": 0.0,
+    "auc_roc": 0.34710743801652894,
+    "average_precision": 0.2767780300250589,
+    "brier": 0.24458052871680377,
+    "VP": 0,
+    "VN": 22,
+    "FP": 0,
+    "FN": 11
+  }
+}

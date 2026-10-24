@@ -325,12 +325,183 @@ class Aplicacao(tk.Tk):
         st.configure("TScale", background=FUNDO, troughcolor=PAINEL_2)
         st.configure("TSpinbox", fieldbackground=PAINEL_2, foreground=TEXTO)
 
+   
+    def abrir_painel_ia(self):
+        from pai_painel_ia import JanelaIA
+
+        painel = JanelaIA(self)
+
+        # Obtém o identificador do paciente atualmente
+        # carregado no visualizador principal.
+        pid_atual = self._pid()
+
+        # Só sincroniza quando o paciente pertence
+        # à partição de validação.
+        if pid_atual in painel.pacientes:
+            painel.pid.set(pid_atual)
+
+    
+    def carregar_paciente_validacao(self):
+        """
+        Carrega automaticamente as três fases e a máscara
+        de um paciente da partição de validação.
+
+        Utiliza os caminhos e os índices de aquisição
+        definidos no pipeline de preparação do projeto.
+        """
+        from pai_etapa2 import (
+            ler_metadados,
+            caminhos_paciente
+        )
+
+        try:
+            tabela = ler_metadados()
+
+            tabela = tabela[
+                tabela["test"] == 2
+            ].copy()
+
+            if len(tabela) != 33:
+                raise RuntimeError(
+                    "Esperados 33 pacientes de validação."
+                )
+
+            pacientes = sorted(
+                tabela["pid"].astype(str).tolist()
+            )
+
+        except Exception as erro:
+            messagebox.showerror(
+                "Erro ao consultar dataset",
+                str(erro)
+            )
+            return
+
+        janela = tk.Toplevel(self)
+        janela.title("Carregar paciente da validação")
+        janela.geometry("460x230")
+        janela.resizable(False, False)
+        janela.configure(bg=PAINEL)
+        janela.transient(self)
+
+        tk.Label(
+            janela,
+            text="Selecionar paciente",
+            font=("Segoe UI", 14, "bold"),
+            bg=PAINEL,
+            fg=TEXTO
+        ).pack(
+            anchor="w",
+            padx=22,
+            pady=(20, 8)
+        )
+
+        tk.Label(
+            janela,
+            text=(
+                "Serão carregadas as três fases DCE-MRI "
+                "e a máscara tumoral."
+            ),
+            bg=PAINEL,
+            fg=SUAVE
+        ).pack(
+            anchor="w",
+            padx=22
+        )
+
+        paciente_selecionado = tk.StringVar(
+            value=pacientes[0]
+        )
+
+        seletor = ttk.Combobox(
+            janela,
+            values=pacientes,
+            textvariable=paciente_selecionado,
+            state="readonly",
+            width=32
+        )
+
+        seletor.pack(
+            fill="x",
+            padx=22,
+            pady=15
+        )
+
+        def confirmar():
+            pid = paciente_selecionado.get()
+
+            linhas = tabela[
+                tabela["pid"].astype(str) == pid
+            ]
+
+            if len(linhas) != 1:
+                messagebox.showerror(
+                    "Paciente inválido",
+                    "Identificador não encontrado.",
+                    parent=janela
+                )
+                return
+
+            linha = linhas.iloc[0]
+
+            aquisicoes, mascara = (
+                caminhos_paciente(linha)
+            )
+
+            arquivos = {
+                FASES[0]: aquisicoes["pre"],
+                FASES[1]: aquisicoes["post_early"],
+                FASES[2]: aquisicoes["post_late"],
+                "mascara": mascara
+            }
+
+            faltantes = [
+                nome
+                for nome, caminho in arquivos.items()
+                if caminho is None or not caminho.is_file()
+            ]
+
+            if faltantes:
+                messagebox.showerror(
+                    "Arquivos ausentes",
+                    "Arquivos não encontrados:\n"
+                    + "\n".join(faltantes),
+                    parent=janela
+                )
+                return
+
+            # Limpa o paciente anterior para que a
+            # navegação seja reiniciada no novo exame.
+            self.fechar_volumes()
+
+            janela.destroy()
+
+            self._executar_em_thread([
+                (nome, str(caminho))
+                for nome, caminho in arquivos.items()
+            ])
+
+        tk.Button(
+            janela,
+            text="Carregar paciente",
+            command=confirmar,
+            bg=DESTAQUE,
+            fg="#071821",
+            font=("Segoe UI", 10, "bold"),
+            relief="flat",
+            padx=18,
+            pady=9
+        ).pack(pady=(2, 10))
+
+    
+
     def _construir_menu(self):
         menu = tk.Menu(self)
         arquivo = tk.Menu(menu, tearoff=False)
         arquivo.add_command(label="Abrir volume NIfTI...     Ctrl+O", command=self.abrir_volume)
         arquivo.add_command(label="Abrir máscara tumoral... Ctrl+M", command=self.abrir_mascara)
         arquivo.add_command(label="Abrir pasta de um paciente...", command=self.abrir_pasta)
+        arquivo.add_command(label="Carregar paciente da validação...",command=self.carregar_paciente_validacao)
         arquivo.add_command(label="Carregar CSV de metadados...", command=self.abrir_csv)
         arquivo.add_separator()
         arquivo.add_command(label="Demonstração com dados sintéticos", command=self.abrir_demo)
@@ -356,6 +527,9 @@ class Aplicacao(tk.Tk):
         ferramentas.add_command(label="Próximo corte", command=lambda: self.mudar_corte(1))
         ferramentas.add_command(label="Corte anterior", command=lambda: self.mudar_corte(-1))
         menu.add_cascade(label="Ferramentas", menu=ferramentas)
+        ferramentas.add_separator()
+        ferramentas.add_command(label="Modelos de IA e Grad-CAM",command=self.abrir_painel_ia)
+
         ajuda = tk.Menu(menu, tearoff=False)
         ajuda.add_command(label="Como utilizar", command=self.mostrar_ajuda)
         ajuda.add_command(label="Equipe e informações", command=self.mostrar_sobre)

@@ -1,0 +1,22 @@
+{
+  "experimento": "resnet50_finetune_early_central_FT01",
+  "melhor_epoca": 1,
+  "melhor_loss_validacao": 1.5765435406655977,
+  "metricas": {
+    "auc_roc": 0.3925619834710744,
+    "f1": 0.2,
+    "acuracia_balanceada": 0.43181818181818177,
+    "VP": 2,
+    "VN": 15,
+    "FP": 7,
+    "FN": 9
+  },
+  "tempo_total_segundos": 512.069001799915,
+  "parametros": {
+    "epocas": 30,
+    "paciencia": 5,
+    "batch": 2,
+    "seed": 42,
+    "tag": "FT01"
+  }
+}

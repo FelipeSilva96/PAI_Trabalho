@@ -1,0 +1,37 @@
+{
+  "experimento": "resnet50_early_central_sz128_lr0p001_pw1_seed42_R01",
+  "arquitetura": "ResNet50",
+  "estrategia": "extrator_congelado",
+  "melhor_epoca": 2,
+  "melhor_loss_validacao": 0.6486488580703735,
+  "tempo_extracao_segundos": 0.04963029990904033,
+  "tempo_treinamento_segundos": 0.5905223999870941,
+  "parametros": {
+    "modo": "early",
+    "selecao": "central",
+    "tamanho": 128,
+    "batch_extracao": 4,
+    "batch": 64,
+    "lr": 0.001,
+    "pos_weight": 1.0,
+    "seed": 42,
+    "epocas": 30,
+    "paciencia": 8,
+    "tag": "R01"
+  },
+  "metricas": {
+    "acuracia": 0.6666666666666666,
+    "acuracia_balanceada": 0.5,
+    "sensibilidade": 0.0,
+    "especificidade": 1.0,
+    "precisao": 0.0,
+    "f1": 0.0,
+    "auc_roc": 0.4917355371900826,
+    "average_precision": 0.39660098418389134,
+    "brier": 0.2273913780180753,
+    "VP": 0,
+    "VN": 22,
+    "FP": 0,
+    "FN": 11
+  }
+}
